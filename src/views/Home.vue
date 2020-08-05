@@ -14,8 +14,9 @@ export default {
   components: {
     HelloWorld
   },
-  async mouted() {
+  async mounted() {
     let result = await getBannerData()
+    console.log(result)
   }
 }
 </script>

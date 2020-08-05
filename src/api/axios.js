@@ -2,19 +2,21 @@ import axios from 'axios'
 import config from '@/config'
 
 const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
-
+console.log(process.env.NODE_ENV)
 class HttpRequest {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
         this.queue = {}
     }
+    // 设置配置
     getInsideConfig() {
         const config = {
-            baseUrl: this.baseUrl,
+            baseURL: this.baseUrl,
             header: {
                 //请求头
             }
         }
+        return config
     }
     // 拦截
     interceptors(instance, url) {
@@ -28,7 +30,7 @@ class HttpRequest {
             // 处理响应
             console.log("处理响应")
             console.log(res)
-            return res
+            return res.data
         }, (error) => {
             // 请求出问题，处理问题
             console.log(error)
