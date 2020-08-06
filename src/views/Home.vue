@@ -7,7 +7,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import { getBannerData } from '@/api/data'
+import { getBannerData, getUserData } from '@/api/data'
 
 export default {
   name: 'Home',
@@ -15,8 +15,11 @@ export default {
     HelloWorld
   },
   async mounted() {
-    let result = await getBannerData()
+    // let result = await getBannerData()
+
+    let result = await getUserData()
     console.log(result)
+
   }
 }
 </script>
