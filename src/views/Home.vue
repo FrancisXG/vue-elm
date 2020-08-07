@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <h1>home</h1>
+    <h1>
+      <span class="iconfont icon-gerenzhongxin"></span>
+      home
+    </h1>
   </div>
 </template>
 
