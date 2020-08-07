@@ -23,3 +23,13 @@ export default {
   }
 }
 </script>
+
+<style  scoped>
+h1 {
+  width: 3.75rem;
+  height: 1rem;
+  background: skyblue;
+  font-size: 0.5rem;
+  line-height: 1rem;
+}
+</style>
