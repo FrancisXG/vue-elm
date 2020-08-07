@@ -54,6 +54,8 @@
         </Grid>
       </Swipe-item>
     </swipe>
+
+    <ShopList :shopListArr="shopListArr"></ShopList>
   </div>
 </template>
 
@@ -63,6 +65,7 @@ import HelloWorld from '@/components/HelloWorld.vue';
 import { getBannerData, getUserData, getPosiData, getIndexEntryData, getRestaurantsData }
   from '@/api/data';
 import { NavBar, Icon, Swipe, SwipeItem, Grid, GridItem, Image } from 'vant';
+import ShopList from '@/components/ShowList.vue'
 // import Button from 'vant/lib/button';
 
 
@@ -75,13 +78,16 @@ export default {
     SwipeItem,
     Grid,
     GridItem,
-    vanImage: Image
+    vanImage: Image,
+    ShopList
   },
   data() {
     return {
       titlePosition: "",
       swiperList1: [],
       swiperList2: [],
+      shopListArr: []
+
     }
   },
   methods: {
@@ -97,24 +103,25 @@ export default {
 
     // let result = await getUserData()
     getPosiData().then((res) => {
-      this.titlePosition = res.name
+      this.titlePosition = res.name;
     });
+
     ((async () => {
       let res2 = await getIndexEntryData()
-      console.log(res2)
+      // console.log(res2)
       this.swiperList1 = res2.slice(0, 8);
-      this.swiperList2 = res2.slice(8, 16)
-
+      this.swiperList2 = res2.slice(8, 16);
     })());
-    ((async () => {
-      let res = await getRestaurantsData()
-      console.log(res)
-    }))
 
-
+    getRestaurantsData().then((res) => {
+      this.shopListArr = res
+      // console.log(res)
+    })
 
   }
+
 }
+
 </script>
 
 <style lang="less">
