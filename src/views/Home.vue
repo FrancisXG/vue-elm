@@ -4,18 +4,24 @@
       <span class="iconfont icon-gerenzhongxin"></span>
       home
     </h1>
+    <Button>这是按钮</Button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import { getBannerData, getUserData, getPosiData, getIndexEntryData, getRestaurantsData } from '@/api/data'
+import HelloWorld from '@/components/HelloWorld.vue';
+import { getBannerData, getUserData, getPosiData, getIndexEntryData, getRestaurantsData }
+  from '@/api/data';
+import { Button } from 'vant';
+// import Button from 'vant/lib/button';
+
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    HelloWorld,
+    Button
   },
   async mounted() {
     // let result = await getBannerData()
