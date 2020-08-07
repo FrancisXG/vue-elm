@@ -17,6 +17,43 @@
         <span>{{titlePosition}}</span>
       </template>
     </nav-bar>
+    <!-- 轮播图 -->
+    <swipe
+      class="my-swipe"
+      :loop="false"
+      :autoplay="3000"
+      indicator-color="grey"
+      :show-indicators="true"
+    >
+      <Swipe-item>
+        <Grid>
+          <Grid-item v-for="(item,index) in swiperList1" :key="index">
+            <van-image
+              width="0.84rem"
+              height="0.84rem"
+              class="gridIcon"
+              fit="cover"
+              :src="'https://fuss10.elemecdn.com'+item.image_url"
+            />
+            <span>{{item.title}}</span>
+          </Grid-item>
+        </Grid>
+      </Swipe-item>
+      <Swipe-item>
+        <Grid>
+          <Grid-item v-for="(item,index) in swiperList2" :key="index">
+            <van-image
+              width="0.84rem"
+              height="0.84rem"
+              class="gridIcon"
+              fit="cover"
+              :src="'https://fuss10.elemecdn.com'+item.image_url"
+            />
+            <span>{{item.title}}</span>
+          </Grid-item>
+        </Grid>
+      </Swipe-item>
+    </swipe>
   </div>
 </template>
 
@@ -25,7 +62,7 @@
 import HelloWorld from '@/components/HelloWorld.vue';
 import { getBannerData, getUserData, getPosiData, getIndexEntryData, getRestaurantsData }
   from '@/api/data';
-import { NavBar, Icon } from 'vant';
+import { NavBar, Icon, Swipe, SwipeItem, Grid, GridItem, Image } from 'vant';
 // import Button from 'vant/lib/button';
 
 
@@ -33,11 +70,18 @@ export default {
   name: 'Home',
   components: {
     NavBar,
-    Icon
+    Icon,
+    Swipe,
+    SwipeItem,
+    Grid,
+    GridItem,
+    vanImage: Image
   },
   data() {
     return {
-      titlePosition: ""
+      titlePosition: "",
+      swiperList1: [],
+      swiperList2: [],
     }
   },
   methods: {
@@ -58,6 +102,9 @@ export default {
     ((async () => {
       let res2 = await getIndexEntryData()
       console.log(res2)
+      this.swiperList1 = res2.slice(0, 8);
+      this.swiperList2 = res2.slice(8, 16)
+
     })());
     ((async () => {
       let res = await getRestaurantsData()
@@ -71,6 +118,10 @@ export default {
 </script>
 
 <style lang="less">
+html {
+  height: 100vh;
+  width: 100vw;
+}
 #home {
   .van-nav-bar {
     background: skyblue;
@@ -84,6 +135,10 @@ export default {
     color: white;
     font-size: 0.3rem;
   }
+
+  .van-swipe-item {
+    height: 7.5rem;
+  }
 }
 
 h1 {
@@ -92,5 +147,9 @@ h1 {
   background: skyblue;
   font-size: 0.5rem;
   line-height: 1rem;
+}
+
+.my-swipe {
+  height: 3.6rem;
 }
 </style>
